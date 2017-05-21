@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>  
+<head>
+  <title>upWorks</title>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+  <!-- load momentJS (required for angular-moment) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <!-- load angular-moment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js  "></script>
+  <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>  
+  <script src="./socket.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./app.js"></script>
+  <meta>
+</head>
+<style type="text/css">
+  body{
+    padding:3em; 
+  }
+
+  .red{
+    background-color:red; 
+  }
+   
+  .white{
+    background-color:white; 
+  }
+
+</style>
+<body class="col-md-6 col-md-offset-3" ng-app="myApp" ng-controller="myCntrl">  
+     <div class="panel panel-primary" ng-show="!mainPage">
+      <div class="panel-heading">Login page</div>
+          <div class="panel-body">
+                <form>
+                  <div class="form-group">
+                    <input type="text" class="form-control" ng-class="class" name="userName" placeholder="Enter userName" ng-model="userName"><span ng-show="span">Please Enter a valid user name</span>
+                  </div>
+                  <button href="./main.html" class="btn btn-primary" ng-click="submit()">submit</button>
+                </form>
+          </div>
+      </div>
+      <div class="panel panel-primary" ng-show="mainPage">
+        <div class="panel-heading">Main Page</div>
+          <div class="panel-body">
+                <div class="well col-md-10">         
+                  <div class="row">
+                      <div class="col-md-5">
+                        <strong>User's Online </strong>   
+                      </div>
+                      <div class="col-md-7">
+                        <strong>User online from</strong>   
+                      </div>
+                    </div>
+                  <div ng-repeat="data in connected">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <p>{{data.user}}</p>   
+                      </div>
+                      <div class="col-md-7">
+                        <p>{{data.date| getDiff}} Ago</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+          </div>
+        </div> 
+      </div>
+</body>
+</html>
